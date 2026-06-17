@@ -1,0 +1,27 @@
+{
+  "name": "pi-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Pi Agent with Kubernetes-leased sandbox execution (Node.js port)",
+  "main": "src/http/server.ts",
+  "scripts": {
+    "start": "node --env-file=.env src/http/server.ts",
+    "test": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@earendil-works/pi-ai": "^0.79.6",
+    "@earendil-works/pi-coding-agent": "^0.79.1",
+    "@kubernetes/client-node": "^1.4.0",
+    "express": "^5.2.1",
+    "typebox": "1.1.38",
+    "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.3",
+    "vitest": "^4.1.9"
+  }
+}

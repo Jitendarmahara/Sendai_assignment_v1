@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: sandbox-runner
+ namespace: pi-agent
+
+spec:
+ serviceName: sandbox-runner #this is the service name and this is connecting to a head leess server;
+ replicas: 8
+ selector:
+  matchLabels:
+   app: sandbox-runner
+ template:
+  metadata:
+   labels:
+    app: sandbox-runner
+  spec:
+   serviceAccountName: pi-agent-sa
+   containers:
+    - name: sandbox
+      image: node:22-alpine
+      command: ["sleep" , "infinity"]
+      resources:
+       requests:
+        cpu: "50m"
+        memory: "64Mi"
+       limits:
+        cpu: "200m"
+        memory: "128Mi"
+      securityContext:
+       allowPrivilegeEscalation : false
+       runAsNonRoot: true
+       runAsUser: 65534

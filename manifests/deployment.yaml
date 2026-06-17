@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: pi-agent
+ namespace: pi-agent
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: pi-agent
+ template:
+  metadata:
+   labels:
+    app: pi-agent
+  spec:
+   serviceAccountName: pi-agent-sa
+   containers:
+    - name: pi-agent
+      image: pi-agent-npm:dev
+      imagePullPolicy: Never
+      ports:
+       - containerPort: 3000
+      env:
+       - name: GEMINI_API_KEY
+         valueFrom:
+          secretKeyRef:
+           name: ai-credentials
+           key: GEMINI_API_KEY
+      resources:
+       requests:
+        cpu: "100m"
+        memory: "128Mi"
+       limits:
+        cpu: "500m"
+        memory: "256Mi"
+
