@@ -37,5 +37,6 @@ if (existsSync(SA_TOKEN_PATH)) {
 }
 
 export { kc };
+// producing auth clien for the kubernates api 
 export const coreApi = kc.makeApiClient(k8s.CoreV1Api);
 export const coordinationApi = kc.makeApiClient(k8s.CoordinationV1Api);

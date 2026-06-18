@@ -1,10 +1,4 @@
-// Native @kubernetes/client-node Exec (WebSocket pods/exec API) — works under
-// real Node.js because isomorphic-ws resolves to the genuine `ws` npm package
-// here, which accepts the flat https.Agent-style TLS options (ca/cert/key/
-// rejectUnauthorized) that KubeConfig.applyToHTTPSOptions() produces. Under
-// Bun this same code fails: Bun substitutes its own internal WebSocket shim
-// for `ws`, which only reads TLS settings from a nested `options.tls.*`
-// shape, so the cluster's auth/cert never reaches the TLS layer.
+
 import * as k8s from "@kubernetes/client-node";
 import stream from "node:stream";
 import { kc } from "./client.ts";
